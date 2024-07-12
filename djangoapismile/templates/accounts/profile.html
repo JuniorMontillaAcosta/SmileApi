@@ -1,0 +1,18 @@
+{%  extends 'base.html' %}
+{% load static %}
+
+{%block title %} <title>User Pofile</title> {% endblock %}
+{% block username %}
+<h1>Hello, {{ request.user.username | truncatechars:4 }}</h1>
+{% endblock username %}
+
+{% block select_profile %}
+	<form action="/accounts/profile/" method="POST" />	
+		{% csrf_token %}	
+		<input type="radio" name="prof" value="doctor" />Doctor
+		<input type="radio" name="prof" value="fathers" />Father  
+		<input  type="radio" name="prof" value="teachers" />Teacher
+		<input  type="submit" value="send" >
+	</form>
+	<script "{% static 'smart-selects/admin/js/chainedfk.js' %}"></script>
+{% endblock select_profile %}
